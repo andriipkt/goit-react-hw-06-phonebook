@@ -6,7 +6,7 @@ import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createContact } from 'store/contacts/actions';
+import { createContact, deleteContact } from 'store/contacts/actions';
 
 export function App() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export function App() {
     dispatch(createContact(name, number));
   };
 
-  const deleteContact = contactId => {
+  const hadnleDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
 
@@ -55,7 +55,7 @@ export function App() {
         <Filter handleFilter={handleFilter} value={filterValue} />
         <ContactList
           filteredContacts={filteredContacts}
-          deleteContact={deleteContact}
+          deleteContact={hadnleDeleteContact}
         />
       </section>
     </>
