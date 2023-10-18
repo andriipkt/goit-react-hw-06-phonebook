@@ -5,13 +5,7 @@ export const createContact = (name, number) => ({
   payload: { name, number },
 });
 
-export const delteContact = concactId => ({
+export const deleteContact = concactId => ({
   type: DELETE_CONTACT,
   payload: concactId,
 });
-
-// const deleteContact = contactId => {
-// setContacts(prevContacts =>
-//   prevContacts.filter(contact => contact.id !== contactId)
-// );
-// };

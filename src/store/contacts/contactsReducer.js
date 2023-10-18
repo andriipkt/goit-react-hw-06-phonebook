@@ -24,17 +24,11 @@ export const contactsReducer = (
             },
       };
 
-    // case DELETE_CONTACT:
-    //   return {
-    //     ...state,
-    //     contacts: state.contacts ? [
-
-    //     ]
-    //   }
-
-    // / setContacts(prevContacts =>
-    //   prevContacts.filter(contact => contact.id !== contactId)
-    // );
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.filter(contact => contact.id !== payload),
+      };
 
     default:
       return state;
