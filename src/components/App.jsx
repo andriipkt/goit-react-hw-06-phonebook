@@ -1,17 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './Header/Header';
 import Phonebook from './Phonebook/Phonebook';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
+// import {
+//   createContactAction,
+//   deleteContactAction,
+//   filterContactsAction,
+// } from 'redux/actions';
 
-import { createContact, deleteContact } from 'store/contacts/actions';
+import { selectContacts, selectFilter } from 'redux/selectors';
+import {
+  addContactSlice,
+  deleteContactSlice,
+} from 'redux/contactsSlice/contactsSlice';
+import { addFilterSlice } from 'redux/filterSlice/filterSlice';
 
 export function App() {
   const dispatch = useDispatch();
-  const { contacts } = useSelector(store => store.contacts);
-  const [filterValue, setFilterValue] = useState('');
+  const contacts = useSelector(selectContacts);
+  const filterValue = useSelector(selectFilter);
 
   //DidUpdate
   useEffect(() => {
@@ -27,15 +37,15 @@ export function App() {
       return alert(`${name} is already in contacts.`);
     }
 
-    dispatch(createContact(name, number));
+    dispatch(addContactSlice(name, number));
   };
 
   const hadnleDeleteContact = contactId => {
-    dispatch(deleteContact(contactId));
+    dispatch(deleteContactSlice(contactId));
   };
 
   const handleFilter = event => {
-    setFilterValue(event.target.value);
+    dispatch(addFilterSlice(event.target.value));
   };
 
   const getFilteredContacts = () => {
@@ -45,7 +55,6 @@ export function App() {
   };
 
   const filteredContacts = getFilteredContacts();
-  console.log('filteredContacts', filteredContacts);
 
   return (
     <>
