@@ -5,11 +5,6 @@ import Header from './Header/Header';
 import Phonebook from './Phonebook/Phonebook';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-// import {
-//   createContactAction,
-//   deleteContactAction,
-//   filterContactsAction,
-// } from 'redux/actions';
 
 import { selectContacts, selectFilter } from 'redux/selectors';
 import {
