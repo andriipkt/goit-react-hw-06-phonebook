@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './Header/Header';
@@ -17,11 +16,6 @@ export function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filterValue = useSelector(selectFilter);
-
-  //DidUpdate
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const addContact = (name, number) => {
     const isNameExists = contacts.some(
@@ -44,6 +38,7 @@ export function App() {
   };
 
   const getFilteredContacts = () => {
+    console.log(contacts);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filterValue.toLowerCase())
     );
