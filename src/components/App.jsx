@@ -32,7 +32,7 @@ export function App() {
       return alert(`${name} is already in contacts.`);
     }
 
-    dispatch(addContactSlice(name, number));
+    dispatch(addContactSlice({ name, number }));
   };
 
   const hadnleDeleteContact = contactId => {
