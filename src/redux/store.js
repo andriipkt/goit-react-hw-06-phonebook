@@ -8,7 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { /* persistedRootReducer, */ rootReducer } from './rootReducer';
+import { rootReducer } from './rootReducer';
 
 export const store = configureStore({
   reducer: rootReducer,

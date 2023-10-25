@@ -17,9 +17,3 @@ export const rootReducer = combineReducers({
   contacts: persistedContactsReducer,
   filter: reducerFilterSlice,
 });
-
-// const persistConfig = {
-//   key: 'contactsPersist',
-//   storage,
-// };
-// export const persistedRootReducer = persistReducer(persistConfig, rootReducer);
