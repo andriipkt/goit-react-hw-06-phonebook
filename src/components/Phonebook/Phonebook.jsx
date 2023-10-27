@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import css from './Phonebook.module.css';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from 'redux/selectors';
+import { addContactSlice } from 'redux/contactsSlice/contactsSlice';
 
-function Phonebook({ addContact }) {
+function Phonebook() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -29,6 +33,18 @@ function Phonebook({ addContact }) {
     addContact(name, number);
     setName('');
     setNumber('');
+  };
+
+  const addContact = (name, number) => {
+    const isNameExists = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (isNameExists) {
+      return alert(`${name} is already in contacts.`);
+    }
+
+    dispatch(addContactSlice({ name, number }));
   };
 
   return (
@@ -72,7 +88,3 @@ function Phonebook({ addContact }) {
 }
 
 export default Phonebook;
-
-Phonebook.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};
